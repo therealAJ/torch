@@ -3,6 +3,7 @@ from flask_ask import Ask, statement, question, session
 import subprocess as sp
 import calendar, time, json
 from analysis import vision
+from pprint import pprint
 
 app = Flask(__name__)
 ask = Ask(app, '/torch')
@@ -18,11 +19,11 @@ def start_skill():
 
 @ask.intent("ViewDescription")
 def describe_view():
-    view_description = "Insert the description received from the API here."
+    view_description = "In front of you there is: "
     print("youre on a roll")
     filepath = take_picture()
     data = send_picture(filepath)
-    view_description = get_description(data)
+    view_description = view_description + get_description(data)
     return statement(view_description)
 
 def take_picture():
@@ -36,7 +37,8 @@ def send_picture(filepath):
 
 def get_description(data):
     python_obj = json.loads(data)
-    return python_obj.description.captions[0].text
+    pprint(python_obj)
+    return python_obj['description']['captions'][0]['text']
 
 
 if __name__ == '__main__':
