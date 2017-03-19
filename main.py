@@ -59,7 +59,7 @@ def send_text(person):
     return question("I am sending a message to "+ person + ". What should I send?")
 
 
-@ask.intent("MessageIs")
+@ask.intent("Write")
 def send_msg(msg):
     print "=-=================================================in message is"
     print session.attributes['person']
