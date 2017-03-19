@@ -11,17 +11,10 @@ from tweepy import OAuthHandler
 import requests
 import os
 import urlparse, urllib
+from tweet import twitter
 
 app = Flask(__name__)
 ask = Ask(app, '/torch')
-
-
-ckey = 'tC8oIP1dzUVB0j54V2RPmgkim'
-csecret = 'oH6os7iZBJKeJm4k8BED6z9vLRthc8ne82qUZTHgRKe6KAr9Vj'
-atoken = '843351930999001088-IvK8bbBP3yONpMBOJXMJIWJ1B99OEuF'
-asecret = '0gPmC4qKGJgMsM82wJGSirUOoVcppm9CyqoppdVssOI0g'
-
-
 
 @app.route('/')
 def homepage():
@@ -56,24 +49,13 @@ def capture_and_tweet():
     data = send_picture(filepath)
     view_description = get_description(data)
     tweet_image(view_description, filepath)
-    print("Sick tweet")
+    return("Sick Tweet, Daredevil")
 
 @ask.intent("Read")
     filepath = take_picture()
     text_description = read(filepath)
     text_description = "I read: " + text_description + "from the image you sent me."
     return statement(text_description)
-
-def tweet_image(message, filepath):
-    api = twitter_api()
-    media = api.media_upload(filepath)
-    api.update_status(status=message, media_ids=[media.media_id])
-
-def twitter_api():
-    auth = OAuthHandler(ckey, csecret)
-    auth.set_access_token(atoken, asecret)
-    api = API(auth)
-    return api
 
 
 def get_description(data):
