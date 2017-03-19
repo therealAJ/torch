@@ -1,6 +1,7 @@
 import httplib, urllib, base64
 import config
 import json
+from pprint import pprint
 
 
 def read(filepath):
@@ -28,6 +29,7 @@ def read(filepath):
         response = conn.getresponse()
         data = response.read()
         json_data = json.loads(data)
+        pprint(json_data)
         lines = json_data['regions'][0]['lines']
         text = []
         sentence = ""
@@ -41,4 +43,4 @@ def read(filepath):
         conn.close()
         return sentence
     except Exception as e:
-        print("[Errno {0}] {1}".format(e.errno, e.strerror))
+        print("[Errno {0}] {1}".format(e.message, e.message))

@@ -3,7 +3,7 @@ from flask_ask import Ask, statement, question, session
 import subprocess as sp
 import calendar, time, json
 from analysis import vision
-import read
+from read import read
 from pprint import pprint
 
 from tweepy import API
@@ -57,12 +57,13 @@ def capture_and_tweet():
     view_description = get_description(data)
     tweet_image(view_description, filepath)
     print("Sick tweet")
+    return statement("Your tweet has been posted.")
 
 @ask.intent("Read")
 def read_and_describe():
     filepath = take_picture()
     text_description = read(filepath)
-    text_description = "I read: " + text_description + "from the image you sent me."
+    # text_description = "I read: " + text_description + "from the image you sent me."
     return statement(text_description)
 
 def tweet_image(message, filepath):
