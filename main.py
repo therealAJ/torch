@@ -59,7 +59,7 @@ def capture_and_tweet():
     print("Sick tweet")
 
 @ask.intent("Read")
-def read():
+def read_and_describe():
     filepath = take_picture()
     text_description = read(filepath)
     text_description = "I read: " + text_description + "from the image you sent me."
