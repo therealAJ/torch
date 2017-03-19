@@ -1,5 +1,8 @@
 from flask import Flask
 from flask_ask import Ask, statement, question, session
+import subprocess as sp
+import calendar
+import time
 
 app = Flask(__name__)
 ask = Ask(app, '/torch')
@@ -16,6 +19,10 @@ def start_skill():
 @ask.intent("ViewDescription")
 def describe_view():
     view_description = "Insert the description received from the API here."
+    print("youre on a roll")
+    filepath = 'fswebcam ' + calendar.timegm(time.gmtime())+ ' .jpg'
+    print filepath
+    sp.call([filepath])
     return statement(view_description)
 
 def take_picture():
