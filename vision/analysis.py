@@ -13,14 +13,14 @@ headers = {
 
 params = urllib.urlencode ({
         ## I will tweak these lolssss
-        'visualFeatures': 'Categories',
+        'visualFeatures': 'Categories,Tags,Description',
         'language': 'en'
     })
 
 
 # #### Image URL and API Call
 
-body = "{'url': 'https://oxfordportal.blob.core.windows.net/vision/Analysis/3.jpg'}"
+body = "{'url': 'http://data.whicdn.com/images/21298747/thumb.jpg'}"
 
 try: 
     conn = httplib.HTTPSConnection('westus.api.cognitive.microsoft.com')
