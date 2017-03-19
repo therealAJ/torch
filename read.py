@@ -38,8 +38,8 @@ def read(filepath):
                 #print(word['text'])
         sentence = " ".join(text)
         print sentence
-        return sentence
         conn.close()
+        return sentence
     except Exception as e:
         print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
