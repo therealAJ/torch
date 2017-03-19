@@ -20,9 +20,9 @@ def start_skill():
 def describe_view():
     view_description = "Insert the description received from the API here."
     print("youre on a roll")
-    filepath = 'fswebcam ' + calendar.timegm(time.gmtime())+ ' .jpg'
+    filepath =  str(calendar.timegm(time.gmtime()))+ '.jpg'
     print filepath
-    sp.call([filepath])
+    sp.call(['fswebcam' , filepath ])
     return statement(view_description)
 
 def take_picture():
