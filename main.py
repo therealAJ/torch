@@ -12,7 +12,7 @@ import requests
 import os
 import urlparse, urllib
 from twitter import tweet_image
-from twilio import *
+from twil import *
 
 app = Flask(__name__)
 ask = Ask(app, '/torch')
