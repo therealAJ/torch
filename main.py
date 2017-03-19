@@ -3,6 +3,7 @@ from flask_ask import Ask, statement, question, session
 import subprocess as sp
 import calendar
 import time
+import analysis
 
 app = Flask(__name__)
 ask = Ask(app, '/torch')
@@ -20,17 +21,18 @@ def start_skill():
 def describe_view():
     view_description = "Insert the description received from the API here."
     print("youre on a roll")
-    take_picture()
+    filepath = take_picture()
+    data = send_picture(filepath)
     return statement(view_description)
 
 def take_picture():
     filepath =  str(calendar.timegm(time.gmtime()))+ '.jpg'
     print filepath
     sp.call(['fswebcam' , filepath ])
-    return
+    return filepath
 
-def send_picture():
-    pass
+def send_picture(filepath):
+    return vision(filepath)
 
 
 if __name__ == '__main__':
