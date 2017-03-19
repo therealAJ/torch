@@ -23,7 +23,7 @@ def describe_view():
     print("youre on a roll")
     filepath = take_picture()
     data = send_picture(filepath)
-    print(data)
+    view_description = data.description.captions[0].text
     return statement(view_description)
 
 def take_picture():
@@ -34,6 +34,8 @@ def take_picture():
 
 def send_picture(filepath):
     return vision(filepath)
+
+def get_description()
 
 
 if __name__ == '__main__':
