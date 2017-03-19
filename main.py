@@ -61,7 +61,7 @@ def send_text(person):
 
 @ask.intent("MessageIs")
 def send_msg(msg):
-    print "in message is"
+    print "=-=================================================in message is"
     print session.attributes['person']
     print msg
     sendTextMessage(msg, session.attributes['person'], '')
