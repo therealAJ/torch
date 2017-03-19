@@ -3,7 +3,7 @@ from flask_ask import Ask, statement, question, session
 import subprocess as sp
 import calendar
 import time
-import analysis
+from analysis import vision
 
 app = Flask(__name__)
 ask = Ask(app, '/torch')
@@ -23,6 +23,7 @@ def describe_view():
     print("youre on a roll")
     filepath = take_picture()
     data = send_picture(filepath)
+    print(data)
     return statement(view_description)
 
 def take_picture():
