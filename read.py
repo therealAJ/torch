@@ -42,5 +42,3 @@ def read(filepath):
         return sentence
     except Exception as e:
         print("[Errno {0}] {1}".format(e.errno, e.strerror))
-
-read('lul.jpg')
