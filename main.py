@@ -1,8 +1,7 @@
 from flask import Flask
 from flask_ask import Ask, statement, question, session
 import subprocess as sp
-import calendar
-import time
+import calendar, time, json
 from analysis import vision
 
 app = Flask(__name__)
@@ -23,7 +22,7 @@ def describe_view():
     print("youre on a roll")
     filepath = take_picture()
     data = send_picture(filepath)
-    view_description = data.description.captions[0].text
+    view_description = get_description(data)
     return statement(view_description)
 
 def take_picture():
@@ -35,7 +34,9 @@ def take_picture():
 def send_picture(filepath):
     return vision(filepath)
 
-def get_description()
+def get_description(data):
+    python_obj = json.loads(data)
+    return python_obj.description.captions[0].text
 
 
 if __name__ == '__main__':
