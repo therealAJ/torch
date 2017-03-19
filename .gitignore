@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# FILES
+vision/config.py
+vision/.ipynb_checkpoints
+vision/config.pyc
