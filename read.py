@@ -29,10 +29,16 @@ def read(filepath):
         data = response.read()
         json_data = json.loads(data)
         lines = json_data['regions'][0]['lines']
+        text = []
+        sentence = ""
         for line in lines:
             words = line['words']
             for word in words:
-                print(word['text'])
+                text.append(str(word['text']))
+                #print(word['text'])
+        sentence = " ".join(text)
+        print sentence
+        return sentence
         conn.close()
     except Exception as e:
         print("[Errno {0}] {1}".format(e.errno, e.strerror))
