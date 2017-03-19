@@ -12,6 +12,7 @@ import requests
 import os
 import urlparse, urllib
 from twitter import tweet_image
+from twilio import *
 
 app = Flask(__name__)
 ask = Ask(app, '/torch')
@@ -50,6 +51,20 @@ def capture_and_tweet():
     view_description = get_description(data)
     tweet_image(view_description, filepath)
     return statement("Sick Tweet, Daredevil")
+
+
+@ask.intent("Text")
+def send_text(person):
+    session.attributes['person'] = person
+    return question("I am sending a message to "+ person + ". What should I send?")
+
+
+@ask.intent("MessageIs")
+def send_msg(msg):
+    sendTextMessage(msg, session.attributes['person'], '')
+    return statement("sent the message for you!")
+
+
 
 @ask.intent("Read")
 def read_and_describe():
