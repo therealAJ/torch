@@ -15,12 +15,6 @@ def twitter_api():
     api = API(auth)
     return api
 
-def capture_and_tweet():
-    view_description = "Boom"
-    filepath = '/Users/PCcik/Desktop/image.jpg';
-    tweet_image(view_description, filepath)
-    print("Sick tweet")
-
 def tweet_image(message, filepath):
     api = twitter_api()
     media = api.media_upload(filepath)
